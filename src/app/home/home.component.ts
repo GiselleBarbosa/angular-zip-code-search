@@ -91,6 +91,9 @@ export class HomeComponent implements OnInit {
             state: apiAddressData.uf,
             country: 'Brasil',
           });
+          const dataForm = this.form.getRawValue();
+
+          localStorage.setItem('saved_address', JSON.stringify(dataForm));
         });
     } else {
       alert('Invalid zip code');
