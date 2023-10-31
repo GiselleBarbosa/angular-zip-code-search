@@ -1,7 +1,7 @@
 export interface Address {
-  address: string;
-  neighborhood: string;
-  city: string;
-  state: string;
+  logradouro: string;
+  bairro: string;
+  localidade: string;
   country: string;
+  uf: string;
 }

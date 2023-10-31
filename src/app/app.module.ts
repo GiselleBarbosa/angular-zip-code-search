@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { HomeComponent } from './home/home.component';
+import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -31,6 +32,7 @@ import { TemplateComponent } from './template/template.component';
     MatSelectModule,
     MatInputModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   bootstrap: [AppComponent],
 })
