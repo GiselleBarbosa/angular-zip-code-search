@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
+import { FeedbackFieldsComponent } from '../shared/feedback-fields/feedback-fields.component';
 import { FindAddressService } from './services/find-address.service';
+import { MaterialImportsModule } from '../shared/material-imports/material-imports/material-imports.module';
 import { regex } from './regex/regex';
 import { take } from 'rxjs';
-import { FeedbackFieldsComponent } from '../shared/feedback-fields/feedback-fields.component';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
-    selector: 'app-home',
-    styles: [
-        `
+  selector: 'app-home',
+  styles: [
+    `
       .form {
         min-width: 150px;
         max-width: 400px;
@@ -28,17 +30,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
         width: 50%;
       }
     `,
-    ],
-    templateUrl: 'home.component.html',
-    standalone: true,
-    imports: [
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatButtonModule,
-        MatIconModule,
-        FeedbackFieldsComponent,
-    ],
+  ],
+  templateUrl: 'home.component.html',
+  standalone: true,
+  imports: [
+    FeedbackFieldsComponent,
+    MaterialImportsModule,
+    ReactiveFormsModule,
+  ],
 })
 export class HomeComponent implements OnInit {
   constructor(
@@ -54,7 +53,6 @@ export class HomeComponent implements OnInit {
     const savedForm = localStorage.getItem('saved_address');
 
     if (savedForm) {
-      console.log(savedForm);
       this.form.patchValue(JSON.parse(savedForm));
     }
   }
