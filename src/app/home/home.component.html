@@ -94,7 +94,22 @@
       </td>
     </tr>
   </table>
-  <button type="submit" mat-raised-button color="primary" class="w-100 mt-1">
+  <button
+    type="submit"
+    mat-raised-button
+    color="primary"
+    class="w-100 mt-1 mb-3"
+  >
     Search
+  </button>
+
+  <button
+    type="button"
+    mat-raised-button
+    color="accent"
+    class="w-100 mt-1"
+    (click)="resetForm()"
+  >
+    Clear form
   </button>
 </form>

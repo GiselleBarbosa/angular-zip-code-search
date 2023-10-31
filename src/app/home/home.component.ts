@@ -35,13 +35,22 @@ export class HomeComponent implements OnInit {
 
   public ngOnInit(): void {
     this.setDataForm();
+
+    const existingDataForm = localStorage.getItem('saved_address');
+
+    if (existingDataForm) {
+      this.form.setValue(JSON.parse(existingDataForm));
+    }
+    this.form.valueChanges.subscribe((dataForm) => {
+      localStorage.setItem('saved_address', dataForm);
+    });
   }
 
   public setDataForm(): void {
     this.form = this._fb.group({
       zipcode: ['', Validators.required],
       address: ['', Validators.required],
-      reference: ['', Validators.required],
+      reference: [''],
       neighborhood: ['', Validators.required],
       city: ['', Validators.required],
       state: ['', Validators.required],
@@ -71,7 +80,17 @@ export class HomeComponent implements OnInit {
   }
 
   public submitForm() {
-    if (this.form.valid) alert('Form Sent');
-    else alert('Invalid fields');
+    const dataForm = this.form.getRawValue();
+
+    if (this.form.valid) {
+      alert('Form Sent');
+      localStorage.setItem('saved_address', JSON.stringify(dataForm));
+    } else {
+      alert('Invalid fields');
+    }
+  }
+
+  public resetForm(): void {
+    this.form.reset();
   }
 }
