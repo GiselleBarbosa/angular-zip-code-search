@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { Address } from './interfaces/address.interface';
 import { FindAddressService } from './services/find-address.service';
 import { take } from 'rxjs';
 
@@ -36,14 +37,12 @@ export class HomeComponent implements OnInit {
   public ngOnInit(): void {
     this.setDataForm();
 
-    const existingDataForm = localStorage.getItem('saved_address');
+    const savedForm = localStorage.getItem('saved_address');
 
-    if (existingDataForm) {
-      this.form.setValue(JSON.parse(existingDataForm));
+    if (savedForm) {
+      console.log(savedForm);
+      this.form.patchValue(JSON.parse(savedForm));
     }
-    this.form.valueChanges.subscribe((dataForm) => {
-      localStorage.setItem('saved_address', dataForm);
-    });
   }
 
   public setDataForm(): void {
