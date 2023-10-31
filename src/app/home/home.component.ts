@@ -91,5 +91,6 @@ export class HomeComponent implements OnInit {
 
   public resetForm(): void {
     this.form.reset();
+    localStorage.removeItem('saved_address');
   }
 }
