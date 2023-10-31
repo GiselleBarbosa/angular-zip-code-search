@@ -7,8 +7,9 @@
           <input
             formControlName="zipcode"
             matInput
-            maxlength="8"
-            placeholder="Ex. 01310930"
+            maxlength="9"
+            minlength="9"
+            placeholder="Ex. 01310-930"
           />
         </mat-form-field>
 
@@ -21,9 +22,15 @@
         >
           <mat-icon>search</mat-icon>
         </button>
-        <app-feedback-fields [form]="form" [field]="'zipcode'" />
+        <app-feedback-fields
+          [form]="form"
+          [field]="'zipcode'"
+          [maxLength]="9"
+          [minLength]="9"
+        />
       </td>
     </tr>
+
     <tr>
       <td>
         <mat-form-field class="full-width-field">
@@ -34,16 +41,30 @@
             placeholder="Ex. Av. Paulista"
           />
         </mat-form-field>
-        <app-feedback-fields [form]="form" [field]="'address'" />
+        <app-feedback-fields
+          [form]="form"
+          [field]="'address'"
+          [maxLength]="50"
+          [minLength]="3"
+        />
       </td>
     </tr>
     <tr>
       <td>
         <mat-form-field class="full-width-field">
           <mat-label>Number</mat-label>
-          <input formControlName="number" matInput placeholder="Ex. 1234" />
+          <input
+            formControlName="number"
+            matInput
+            placeholder="Ex. 123 ou digite 0 para sem numero"
+          />
         </mat-form-field>
-        <app-feedback-fields [form]="form" [field]="'number'" />
+        <app-feedback-fields
+          [form]="form"
+          [field]="'number'"
+          [maxLength]="10"
+          [minLength]="1"
+        />
       </td>
     </tr>
 
@@ -59,7 +80,12 @@
             placeholder="Ex. apto 23 bloco A"
           />
         </mat-form-field>
-        <app-feedback-fields [form]="form" [field]="'complement'" />
+        <app-feedback-fields
+          [form]="form"
+          [field]="'complement'"
+          [maxLength]="35"
+          [minLength]="1"
+        />
       </td>
     </tr>
 
@@ -75,7 +101,12 @@
             placeholder="Ex. next train station"
           />
         </mat-form-field>
-        <app-feedback-fields [form]="form" [field]="'reference'" />
+        <app-feedback-fields
+          [form]="form"
+          [field]="'reference'"
+          [maxLength]="50"
+          [minLength]="1"
+        />
       </td>
     </tr>
 
@@ -87,10 +118,15 @@
             matInput
             formControlName="neighborhood"
             #reference
-            placeholder="Ex. Pirituba"
+            placeholder="Ex. Bela Vista"
           />
         </mat-form-field>
-        <app-feedback-fields [form]="form" [field]="'neighborhood'" />
+        <app-feedback-fields
+          [form]="form"
+          [field]="'neighborhood'"
+          [maxLength]="40"
+          [minLength]="3"
+        />
       </td>
     </tr>
   </table>
@@ -102,25 +138,40 @@
           <mat-label>City</mat-label>
           <input formControlName="city" matInput placeholder="Ex. São Paulo" />
         </mat-form-field>
-        <app-feedback-fields [form]="form" [field]="'city'" />
+        <app-feedback-fields
+          [form]="form"
+          [field]="'city'"
+          [maxLength]="40"
+          [minLength]="3"
+        />
       </td>
     </tr>
     <tr>
       <td>
         <mat-form-field class="full-width-field">
-          <mat-label>State</mat-label>
-          <input formControlName="state" matInput placeholder="Ex. São Paulo" />
+          <mat-label>UF</mat-label>
+          <input formControlName="uf" matInput placeholder="Ex. SP" />
         </mat-form-field>
-        <app-feedback-fields [form]="form" [field]="'state'" />
+        <app-feedback-fields
+          [form]="form"
+          [field]="'uf'"
+          [maxLength]="2"
+          [minLength]="2"
+        />
       </td>
     </tr>
     <tr>
       <td>
         <mat-form-field class="full-width-field">
           <mat-label>Country</mat-label>
-          <input formControlName="country" matInput placeholder="Brazil" />
+          <input formControlName="country" matInput placeholder="Ex. Brazil" />
         </mat-form-field>
-        <app-feedback-fields [form]="form" [field]="'country'" />
+        <app-feedback-fields
+          [form]="form"
+          [field]="'country'"
+          [maxLength]="40"
+          [minLength]="3"
+        />
       </td>
     </tr>
   </table>

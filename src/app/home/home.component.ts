@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { FindAddressService } from './services/find-address.service';
+import { regex } from './regex/regex';
 import { take } from 'rxjs';
 
 @Component({
@@ -50,12 +51,29 @@ export class HomeComponent implements OnInit {
         '',
         Validators.compose([
           Validators.required,
-          Validators.maxLength(8),
-          Validators.minLength(8),
+          Validators.maxLength(9),
+          Validators.minLength(9),
+          Validators.pattern(regex.zipcodePattern),
         ]),
       ],
-      address: ['', Validators.required],
-      number: ['', Validators.required],
+      address: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.maxLength(50),
+          Validators.minLength(3),
+          Validators.pattern(regex.alphabeticPattern),
+        ]),
+      ],
+      number: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.maxLength(10),
+          Validators.minLength(1),
+          Validators.pattern(regex.numericPattern),
+        ]),
+      ],
       complement: [
         '',
         Validators.compose([
@@ -66,19 +84,31 @@ export class HomeComponent implements OnInit {
       ],
       reference: [
         '',
-        Validators.compose([Validators.maxLength(50), Validators.minLength(1)]),
+        Validators.compose([Validators.maxLength(40), Validators.minLength(1)]),
       ],
-      neighborhood: ['', Validators.required],
-      city: ['', Validators.required],
-      state: ['', Validators.required],
-      country: ['', Validators.required],
+      neighborhood: [
+        '',
+        Validators.compose([Validators.maxLength(40), Validators.minLength(3)]),
+      ],
+      city: [
+        '',
+        Validators.compose([Validators.maxLength(40), Validators.minLength(3)]),
+      ],
+      uf: [
+        '',
+        Validators.compose([Validators.maxLength(2), Validators.minLength(2)]),
+      ],
+      country: [
+        '',
+        Validators.compose([Validators.maxLength(40), Validators.minLength(3)]),
+      ],
     });
   }
 
   public PopulateFields(): void {
     const zipcode = this.form.get('zipcode')?.value;
 
-    if (zipcode && zipcode.length === 8) {
+    if ((zipcode && zipcode.length === 8) || 9) {
       this._findAdressService
         .findAddress(zipcode)
         .pipe(take(1))
@@ -87,7 +117,7 @@ export class HomeComponent implements OnInit {
             address: apiAddressData.logradouro,
             neighborhood: apiAddressData.bairro,
             city: apiAddressData.localidade,
-            state: apiAddressData.uf,
+            uf: apiAddressData.uf,
             country: 'Brasil',
           });
           const dataForm = this.form.getRawValue();

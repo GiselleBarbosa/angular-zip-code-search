@@ -10,10 +10,10 @@ import { FormGroup } from '@angular/forms';
         Required field
       </mat-error>
       <mat-error class="mb-3" *ngIf="form.get(field)?.hasError('maxlength')">
-        Max length characters is {{ maxLength }}
+        Maximum characters is {{ maxLength }}
       </mat-error>
       <mat-error class="mb-3" *ngIf="form.get(field)?.hasError('minlength')">
-        Min length characters is {{ minLength }}
+        Minimum characters is {{ minLength }}
       </mat-error>
       <mat-error class="mb-3" *ngIf="form.get(field)?.hasError('pattern')">
         invalid character for this field
