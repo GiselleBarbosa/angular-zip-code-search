@@ -1,14 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 
 import { FindAddressService } from './services/find-address.service';
 import { regex } from './regex/regex';
 import { take } from 'rxjs';
+import { FeedbackFieldsComponent } from '../shared/feedback-fields/feedback-fields.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
-  selector: 'app-home',
-  styles: [
-    `
+    selector: 'app-home',
+    styles: [
+        `
       .form {
         min-width: 150px;
         max-width: 400px;
@@ -23,8 +28,17 @@ import { take } from 'rxjs';
         width: 50%;
       }
     `,
-  ],
-  templateUrl: 'home.component.html',
+    ],
+    templateUrl: 'home.component.html',
+    standalone: true,
+    imports: [
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatIconModule,
+        FeedbackFieldsComponent,
+    ],
 })
 export class HomeComponent implements OnInit {
   constructor(

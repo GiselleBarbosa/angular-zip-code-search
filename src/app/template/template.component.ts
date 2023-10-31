@@ -3,12 +3,18 @@ import { Component, inject } from '@angular/core';
 import { map, shareReplay } from 'rxjs/operators';
 
 import { Observable } from 'rxjs';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { NgIf, AsyncPipe } from '@angular/common';
+import { MatListModule } from '@angular/material/list';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @Component({
-  selector: 'app-template',
-
-  styles: [
-    `
+    selector: 'app-template',
+    styles: [
+        `
       .sidenav-container {
         height: 100%;
       }
@@ -31,8 +37,8 @@ import { Observable } from 'rxjs';
         cursor: pointer;
       }
     `,
-  ],
-  template: `<mat-sidenav-container class="sidenav-container">
+    ],
+    template: `<mat-sidenav-container class="sidenav-container">
     <mat-sidenav
       #drawer
       class="sidenav"
@@ -68,6 +74,18 @@ import { Observable } from 'rxjs';
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container> `,
+    standalone: true,
+    imports: [
+        MatSidenavModule,
+        MatToolbarModule,
+        MatListModule,
+        NgIf,
+        MatButtonModule,
+        MatIconModule,
+        RouterLink,
+        RouterOutlet,
+        AsyncPipe,
+    ],
 })
 export class TemplateComponent {
   private breakpointObserver = inject(BreakpointObserver);
