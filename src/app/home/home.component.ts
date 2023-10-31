@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Address } from './interfaces/address.interface';
 import { FindAddressService } from './services/find-address.service';
 import { take } from 'rxjs';
 
@@ -11,7 +10,7 @@ import { take } from 'rxjs';
     `
       .form {
         min-width: 150px;
-        max-width: 500px;
+        max-width: 400px;
         width: 100%;
       }
 
@@ -101,13 +100,14 @@ export class HomeComponent implements OnInit {
   }
 
   public submitForm() {
+    this.form.markAllAsTouched();
     const dataForm = this.form.getRawValue();
 
     if (this.form.valid) {
-      alert('Form Sent');
+      console.log('Form sent successfully!');
       localStorage.setItem('saved_address', JSON.stringify(dataForm));
     } else {
-      alert('Invalid fields');
+      console.log('Invalid fields');
     }
   }
 

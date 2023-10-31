@@ -11,18 +11,18 @@
             placeholder="Ex. 01310930"
           />
         </mat-form-field>
+
         <button
           type="button"
           (click)="PopulateFields()"
-          class="ms-3"
+          class="ms-4"
           mat-mini-fab
-          aria-label="Example icon button with a home icon"
+          aria-label="icon button with a home icon"
         >
           <mat-icon>search</mat-icon>
         </button>
+        <app-feedback-fields [form]="form" [field]="'zipcode'" />
       </td>
-
-      <td></td>
     </tr>
     <tr>
       <td>
@@ -34,6 +34,7 @@
             placeholder="Ex. Av. Paulista"
           />
         </mat-form-field>
+        <app-feedback-fields [form]="form" [field]="'address'" />
       </td>
     </tr>
     <tr>
@@ -42,6 +43,7 @@
           <mat-label>Number</mat-label>
           <input formControlName="number" matInput placeholder="Ex. 1234" />
         </mat-form-field>
+        <app-feedback-fields [form]="form" [field]="'number'" />
       </td>
     </tr>
 
@@ -56,8 +58,8 @@
             maxlength="35"
             placeholder="Ex. apto 23 bloco A"
           />
-          <mat-hint align="end">{{ complement.value.length }} / 50</mat-hint>
         </mat-form-field>
+        <app-feedback-fields [form]="form" [field]="'complement'" />
       </td>
     </tr>
 
@@ -72,8 +74,8 @@
             maxlength="50"
             placeholder="Ex. next train station"
           />
-          <mat-hint align="end">{{ reference.value.length }} / 50</mat-hint>
         </mat-form-field>
+        <app-feedback-fields [form]="form" [field]="'reference'" />
       </td>
     </tr>
 
@@ -88,6 +90,7 @@
             placeholder="Ex. Pirituba"
           />
         </mat-form-field>
+        <app-feedback-fields [form]="form" [field]="'neighborhood'" />
       </td>
     </tr>
   </table>
@@ -99,6 +102,7 @@
           <mat-label>City</mat-label>
           <input formControlName="city" matInput placeholder="Ex. São Paulo" />
         </mat-form-field>
+        <app-feedback-fields [form]="form" [field]="'city'" />
       </td>
     </tr>
     <tr>
@@ -107,6 +111,7 @@
           <mat-label>State</mat-label>
           <input formControlName="state" matInput placeholder="Ex. São Paulo" />
         </mat-form-field>
+        <app-feedback-fields [form]="form" [field]="'state'" />
       </td>
     </tr>
     <tr>
@@ -115,6 +120,7 @@
           <mat-label>Country</mat-label>
           <input formControlName="country" matInput placeholder="Brazil" />
         </mat-form-field>
+        <app-feedback-fields [form]="form" [field]="'country'" />
       </td>
     </tr>
   </table>
