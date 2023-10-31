@@ -1,0 +1,74 @@
+<form [formGroup]="form" (ngSubmit)="submitForm()" class="p-4">
+  <table class="full-width-field" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="small-field">
+          <mat-label>Zip Code</mat-label>
+          <input formControlName="zipcode" matInput />
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <mat-form-field class="full-width-field">
+          <mat-label>Address</mat-label>
+          <input formControlName="address" matInput />
+        </mat-form-field>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <mat-form-field class="full-width-field">
+          <mat-label>Reference</mat-label>
+          <input
+            matInput
+            formControlName="reference"
+            #reference
+            maxlength="50"
+            placeholder="Ex. next train station"
+          />
+          <mat-hint align="end">{{ reference.value.length }} / 50</mat-hint>
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+
+  <table class="full-width-field" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="full-width-field">
+          <mat-label>City</mat-label>
+          <input formControlName="city" matInput placeholder="Ex. São Paulo" />
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <mat-form-field class="full-width-field">
+          <mat-label>State</mat-label>
+          <input
+            formControlName="state"
+            matInput
+            placeholder="Ex. São Paulo"
+          />
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <mat-form-field class="full-width-field">
+          <mat-label>Country</mat-label>
+          <input
+            formControlName="country"
+            matInput
+            placeholder="Brazil"
+          />
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+  <button type="submit" mat-raised-button color="primary" class="w-100 mt-1">
+    Search
+  </button>
+</form>

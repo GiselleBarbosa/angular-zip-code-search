@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -19,70 +20,30 @@ import { Component } from '@angular/core';
       }
     `,
   ],
-  template: `
-    <form class="p-5">
-      <table class="full-width-field" cellspacing="0">
-        <tr>
-          <td>
-            <mat-form-field class="small-field ">
-              <mat-label>Zip Code</mat-label>
-              <input matInput />
-            </mat-form-field>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <mat-form-field class="full-width-field">
-              <mat-label>Address</mat-label>
-              <input matInput />
-            </mat-form-field>
-          </td>
-        </tr>
-
-        <tr>
-          <td>
-            <mat-form-field class="full-width-field">
-              <mat-label>Complement</mat-label>
-              <input
-                matInput
-                #reference
-                maxlength="50"
-                placeholder="Exemplo: Próximo ao colégio"
-              />
-              <mat-hint align="end">{{ reference.value.length }} / 50</mat-hint>
-            </mat-form-field>
-          </td>
-        </tr>
-      </table>
-
-      <table class="full-width-field" cellspacing="0">
-        <tr>
-          <td>
-            <mat-form-field class="full-width-field">
-              <mat-label>City</mat-label>
-              <input matInput placeholder="Ex. San Francisco" />
-            </mat-form-field>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <mat-form-field class="full-width-field">
-              <mat-label>State</mat-label>
-              <input matInput placeholder="Ex. California" />
-            </mat-form-field>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <mat-form-field class="full-width-field">
-              <mat-label>Country</mat-label>
-              <input matInput placeholder="Ex. California" />
-            </mat-form-field>
-          </td>
-        </tr>
-      </table>
-      <button mat-raised-button color="primary" class="w-100 mt-1">Search</button>
-    </form>
-  `,
+  templateUrl: 'home.component.html',
 })
-export class HomeComponent {}
+export class HomeComponent implements OnInit {
+  constructor(private _fb: FormBuilder) {}
+
+  public form!: FormGroup;
+
+  public ngOnInit(): void {
+    this.setDataForm();
+  }
+
+  public submitForm() {
+    if (this.form.valid) 
+    alert('Enviou formulario');
+  }
+
+  public setDataForm(): void {
+    this.form = this._fb.group({
+      zipcode: ['', Validators.required],
+      address: ['', Validators.required],
+      reference: ['', Validators.required],
+      city: ['', Validators.required],
+      state: ['', Validators.required],
+      country: ['', Validators.required],
+    });
+  }
+}
