@@ -47,9 +47,28 @@ export class HomeComponent implements OnInit {
 
   public setDataForm(): void {
     this.form = this._fb.group({
-      zipcode: ['', Validators.required],
+      zipcode: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.maxLength(8),
+          Validators.minLength(8),
+        ]),
+      ],
       address: ['', Validators.required],
-      reference: [''],
+      number: ['', Validators.required],
+      complement: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.maxLength(35),
+          Validators.minLength(1),
+        ]),
+      ],
+      reference: [
+        '',
+        Validators.compose([Validators.maxLength(50), Validators.minLength(1)]),
+      ],
       neighborhood: ['', Validators.required],
       city: ['', Validators.required],
       state: ['', Validators.required],

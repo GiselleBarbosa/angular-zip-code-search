@@ -36,6 +36,30 @@
         </mat-form-field>
       </td>
     </tr>
+    <tr>
+      <td>
+        <mat-form-field class="full-width-field">
+          <mat-label>Number</mat-label>
+          <input formControlName="number" matInput placeholder="Ex. 1234" />
+        </mat-form-field>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <mat-form-field class="full-width-field">
+          <mat-label>Complement</mat-label>
+          <input
+            matInput
+            formControlName="complement"
+            #complement
+            maxlength="35"
+            placeholder="Ex. apto 23 bloco A"
+          />
+          <mat-hint align="end">{{ complement.value.length }} / 50</mat-hint>
+        </mat-form-field>
+      </td>
+    </tr>
 
     <tr>
       <td>

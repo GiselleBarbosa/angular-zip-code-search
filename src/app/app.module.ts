@@ -16,9 +16,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgModule } from '@angular/core';
 import { TemplateComponent } from './template/template.component';
+import { SnackbarComponent } from './shared/snackbar/snackbar/snackbar.component';
 
 @NgModule({
-  declarations: [AppComponent, TemplateComponent, HomeComponent],
+  declarations: [AppComponent, TemplateComponent, HomeComponent, SnackbarComponent],
   imports: [
     AppRoutingModule,
     BrowserModule,
