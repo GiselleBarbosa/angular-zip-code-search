@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { FindAddressService } from './services/find-address.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -36,10 +37,6 @@ export class HomeComponent implements OnInit {
     this.setDataForm();
   }
 
-  public submitForm() {
-    if (this.form.valid) alert('Enviou formulario');
-  }
-
   public setDataForm(): void {
     this.form = this._fb.group({
       zipcode: ['', Validators.required],
@@ -52,17 +49,29 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  public setFieldValues(): void {
+  public PopulateFields(): void {
     const zipcode = this.form.get('zipcode')?.value;
 
-    this._findAdressService.findAddress(zipcode).subscribe((apiAddressData) => {
-      this.form.patchValue({
-        address: apiAddressData.logradouro,
-        neighborhood: apiAddressData.bairro,
-        city: apiAddressData.localidade,
-        state: apiAddressData.uf,
-        country: 'Brasil',
-      });
-    });
+    if (zipcode && zipcode.length === 8) {
+      this._findAdressService
+        .findAddress(zipcode)
+        .pipe(take(1))
+        .subscribe((apiAddressData) => {
+          this.form.patchValue({
+            address: apiAddressData.logradouro,
+            neighborhood: apiAddressData.bairro,
+            city: apiAddressData.localidade,
+            state: apiAddressData.uf,
+            country: 'Brasil',
+          });
+        });
+    } else {
+      alert('Invalid zip code');
+    }
+  }
+
+  public submitForm() {
+    if (this.form.valid) alert('Form Sent');
+    else alert('Invalid fields');
   }
 }

@@ -4,9 +4,25 @@
       <td>
         <mat-form-field class="small-field">
           <mat-label>Zip Code</mat-label>
-          <input formControlName="zipcode" matInput />
+          <input
+            formControlName="zipcode"
+            matInput
+            maxlength="8"
+            placeholder="Ex. 01310930"
+          />
         </mat-form-field>
+        <button
+          type="button"
+          (click)="PopulateFields()"
+          class="ms-3"
+          mat-mini-fab
+          aria-label="Example icon button with a home icon"
+        >
+          <mat-icon>search</mat-icon>
+        </button>
       </td>
+
+      <td></td>
     </tr>
     <tr>
       <td>
@@ -78,13 +94,7 @@
       </td>
     </tr>
   </table>
-  <button
-    type="submit"
-    mat-raised-button
-    color="primary"
-    class="w-100 mt-1"
-    (click)="setFieldValues()"
-  >
+  <button type="submit" mat-raised-button color="primary" class="w-100 mt-1">
     Search
   </button>
 </form>
