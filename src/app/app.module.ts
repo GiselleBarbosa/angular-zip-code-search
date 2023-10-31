@@ -9,9 +9,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgModule } from '@angular/core';
 import { TemplateComponent } from './template/template.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [AppComponent, TemplateComponent],
+  declarations: [AppComponent, TemplateComponent, HomeComponent],
   imports: [
     AppRoutingModule,
     BrowserModule,
