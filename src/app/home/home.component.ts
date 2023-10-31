@@ -120,7 +120,7 @@ export class HomeComponent implements OnInit {
   public PopulateFields(): void {
     const zipcode = this.form.get('zipcode')?.value;
 
-    if ((zipcode && zipcode.length === 8) || 9) {
+    if (zipcode && zipcode.length ===  9) {
       this._findAdressService
         .findAddress(zipcode)
         .pipe(take(1))
@@ -137,7 +137,7 @@ export class HomeComponent implements OnInit {
           localStorage.setItem('saved_address', JSON.stringify(dataForm));
         });
     } else {
-      alert('Invalid zip code');
+      alert('Invalid zip code. Accepted format Ex. 01310-930');
     }
   }
 
