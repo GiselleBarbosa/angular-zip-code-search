@@ -60,7 +60,12 @@ import { Observable } from 'rxjs';
         </button>
         <span class="cursor-pointer" routerLink="/">Zip Code Search</span>
       </mat-toolbar>
-      <router-outlet />
+      <div class="ps-4 pt-4">
+        <h3>Find your address</h3>
+      </div>
+      <div class="ps-4 pe-4 mb-5">
+        <router-outlet />
+      </div>
     </mat-sidenav-content>
   </mat-sidenav-container> `,
 })

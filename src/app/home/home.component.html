@@ -1,4 +1,4 @@
-<form [formGroup]="form" (ngSubmit)="submitForm()" class="p-4">
+<form [formGroup]="form" (ngSubmit)="submitForm()">
   <table class="full-width-field" cellspacing="0">
     <tr>
       <td>
@@ -12,7 +12,11 @@
       <td>
         <mat-form-field class="full-width-field">
           <mat-label>Address</mat-label>
-          <input formControlName="address" matInput />
+          <input
+            formControlName="address"
+            matInput
+            placeholder="Ex. Av. Paulista"
+          />
         </mat-form-field>
       </td>
     </tr>
@@ -32,6 +36,20 @@
         </mat-form-field>
       </td>
     </tr>
+
+    <tr>
+      <td>
+        <mat-form-field class="full-width-field">
+          <mat-label>Neighborhood</mat-label>
+          <input
+            matInput
+            formControlName="neighborhood"
+            #reference
+            placeholder="Ex. Pirituba"
+          />
+        </mat-form-field>
+      </td>
+    </tr>
   </table>
 
   <table class="full-width-field" cellspacing="0">
@@ -47,11 +65,7 @@
       <td>
         <mat-form-field class="full-width-field">
           <mat-label>State</mat-label>
-          <input
-            formControlName="state"
-            matInput
-            placeholder="Ex. São Paulo"
-          />
+          <input formControlName="state" matInput placeholder="Ex. São Paulo" />
         </mat-form-field>
       </td>
     </tr>
@@ -59,11 +73,7 @@
       <td>
         <mat-form-field class="full-width-field">
           <mat-label>Country</mat-label>
-          <input
-            formControlName="country"
-            matInput
-            placeholder="Brazil"
-          />
+          <input formControlName="country" matInput placeholder="Brazil" />
         </mat-form-field>
       </td>
     </tr>

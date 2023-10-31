@@ -41,6 +41,7 @@ export class HomeComponent implements OnInit {
       zipcode: ['', Validators.required],
       address: ['', Validators.required],
       reference: ['', Validators.required],
+      neighborhood: ['', Validators.required],
       city: ['', Validators.required],
       state: ['', Validators.required],
       country: ['', Validators.required],
