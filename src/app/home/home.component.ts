@@ -1,7 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
+import { FeedbackFieldsComponent } from '../shared/feedback-fields/feedback-fields.component';
 import { FindAddressService } from './services/find-address.service';
+import { MaterialImportsModule } from '../shared/material-imports/material-imports/material-imports.module';
+import { ZipcodeMaskService } from './services/zipcode-mask.service';
 import { regex } from './regex/regex';
 import { take } from 'rxjs';
 
@@ -25,11 +33,18 @@ import { take } from 'rxjs';
     `,
   ],
   templateUrl: 'home.component.html',
+  standalone: true,
+  imports: [
+    FeedbackFieldsComponent,
+    MaterialImportsModule,
+    ReactiveFormsModule,
+  ],
 })
 export class HomeComponent implements OnInit {
   constructor(
     private _fb: FormBuilder,
-    private _findAdressService: FindAddressService
+    private _findAdressService: FindAddressService,
+    private _zipcodeMaskService: ZipcodeMaskService
   ) {}
 
   public form!: FormGroup;
@@ -40,9 +55,12 @@ export class HomeComponent implements OnInit {
     const savedForm = localStorage.getItem('saved_address');
 
     if (savedForm) {
-      console.log(savedForm);
       this.form.patchValue(JSON.parse(savedForm));
     }
+
+    this.form.valueChanges.subscribe((modifiedFieldsData) => {
+      localStorage.setItem('saved_address', JSON.stringify(modifiedFieldsData));
+    });
   }
 
   public setDataForm(): void {
@@ -88,19 +106,35 @@ export class HomeComponent implements OnInit {
       ],
       neighborhood: [
         '',
-        Validators.compose([Validators.maxLength(40), Validators.minLength(3)]),
+        Validators.compose([
+          Validators.required,
+          Validators.maxLength(40),
+          Validators.minLength(3),
+        ]),
       ],
       city: [
         '',
-        Validators.compose([Validators.maxLength(40), Validators.minLength(3)]),
+        Validators.compose([
+          Validators.required,
+          Validators.maxLength(40),
+          Validators.minLength(3),
+        ]),
       ],
       uf: [
         '',
-        Validators.compose([Validators.maxLength(2), Validators.minLength(2)]),
+        Validators.compose([
+          Validators.required,
+          Validators.maxLength(2),
+          Validators.minLength(2),
+        ]),
       ],
       country: [
         '',
-        Validators.compose([Validators.maxLength(40), Validators.minLength(3)]),
+        Validators.compose([
+          Validators.required,
+          Validators.maxLength(40),
+          Validators.minLength(3),
+        ]),
       ],
     });
   }
@@ -108,7 +142,7 @@ export class HomeComponent implements OnInit {
   public PopulateFields(): void {
     const zipcode = this.form.get('zipcode')?.value;
 
-    if ((zipcode && zipcode.length === 8) || 9) {
+    if (zipcode && zipcode.length === 9) {
       this._findAdressService
         .findAddress(zipcode)
         .pipe(take(1))
@@ -122,10 +156,10 @@ export class HomeComponent implements OnInit {
           });
           const dataForm = this.form.getRawValue();
 
-          localStorage.setItem('saved_address', JSON.stringify(dataForm));
+          // localStorage.setItem('saved_address', JSON.stringify(dataForm));
         });
     } else {
-      alert('Invalid zip code');
+      alert('Invalid zip code. Accepted format Ex. 01310-930');
     }
   }
 
@@ -135,14 +169,23 @@ export class HomeComponent implements OnInit {
 
     if (this.form.valid) {
       console.log('Form sent successfully!');
-      localStorage.setItem('saved_address', JSON.stringify(dataForm));
+      this.resetForm();
     } else {
+      localStorage.setItem('saved_address', JSON.stringify(dataForm));
       console.log('Invalid fields');
     }
   }
 
   public resetForm(): void {
     this.form.reset();
+
     localStorage.removeItem('saved_address');
+    setTimeout(() => {
+      location.reload();
+    }, 2000);
+  }
+
+  public zipCodePatterMask(event: KeyboardEvent): void {
+    this._zipcodeMaskService.zipCodePatterMask(event);
   }
 }

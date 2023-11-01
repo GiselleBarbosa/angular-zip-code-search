@@ -5,6 +5,7 @@
         <mat-form-field class="small-field">
           <mat-label>Zip Code</mat-label>
           <input
+            (keyup)="zipCodePatterMask($event)"
             formControlName="zipcode"
             matInput
             maxlength="9"
@@ -17,16 +18,18 @@
           type="button"
           (click)="PopulateFields()"
           class="ms-4"
-          mat-mini-fab
-          aria-label="icon button with a home icon"
+          mat-fab
+          aria-label="icon button with a search icon"
         >
           <mat-icon>search</mat-icon>
         </button>
+
         <app-feedback-fields
           [form]="form"
           [field]="'zipcode'"
           [maxLength]="9"
           [minLength]="9"
+          [pattern]="''"
         />
       </td>
     </tr>
@@ -180,6 +183,7 @@
     mat-raised-button
     color="primary"
     class="w-100 mt-1 mb-3"
+    style="height: 3rem"
   >
     Save address
   </button>
@@ -189,6 +193,7 @@
     mat-raised-button
     color="accent"
     class="w-100 mt-1"
+    style="height: 3rem"
     (click)="resetForm()"
   >
     Clear form

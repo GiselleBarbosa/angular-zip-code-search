@@ -1,10 +1,12 @@
 import { Component, Input } from '@angular/core';
 
 import { FormGroup } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'app-feedback-fields',
-  template: `
+    selector: 'app-feedback-fields',
+    template: `
     <ng-container *ngIf="hasTouched()">
       <mat-error class="mb-3" *ngIf="form.get(field)?.hasError('required')">
         Required field
@@ -20,6 +22,8 @@ import { FormGroup } from '@angular/forms';
       </mat-error>
     </ng-container>
   `,
+    standalone: true,
+    imports: [NgIf, MatFormFieldModule],
 })
 export class FeedbackFieldsComponent {
   @Input() public form!: FormGroup;

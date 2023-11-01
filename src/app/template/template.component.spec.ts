@@ -14,16 +14,16 @@ describe('TemplateComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [TemplateComponent],
-      imports: [
+    imports: [
         NoopAnimationsModule,
         MatButtonModule,
         MatIconModule,
         MatListModule,
         MatSidenavModule,
         MatToolbarModule,
-      ]
-    }).compileComponents();
+        TemplateComponent,
+    ]
+}).compileComponents();
   }));
 
   beforeEach(() => {
