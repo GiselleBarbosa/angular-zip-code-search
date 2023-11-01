@@ -1,17 +1,21 @@
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'home',
-    pathMatch: 'prefix',
+    pathMatch: 'full',
   },
+
   {
     path: 'home',
-    component: HomeComponent,
+    loadChildren: () => import('./routes.module').then((mod) => mod.homeRoute),
+  },
+  {
+    path: 'address-list',
+    loadChildren: () => import('./routes.module').then((mod) => mod.addressListRoutes),
   },
 ];
 
