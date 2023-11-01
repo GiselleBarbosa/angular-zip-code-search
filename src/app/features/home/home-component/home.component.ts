@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -6,11 +6,13 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { FeedbackFieldsComponent } from '../shared/feedback-fields/feedback-fields.component';
-import { FindAddressService } from './services/find-address.service';
-import { MaterialImportsModule } from '../shared/material-imports/material-imports/material-imports.module';
-import { ZipcodeMaskService } from './services/zipcode-mask.service';
-import { regex } from './regex/regex';
+import { FeedbackFieldsComponent } from '../../../shared/feedback-fields/feedback-fields.component';
+import { FindAddressService } from '../services/find-address.service';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { ZipcodeMaskService } from '../services/zipcode-mask.service';
+import { regex } from '../../../shared/regex/regex';
 import { take } from 'rxjs';
 
 @Component({
@@ -36,16 +38,16 @@ import { take } from 'rxjs';
   standalone: true,
   imports: [
     FeedbackFieldsComponent,
-    MaterialImportsModule,
     ReactiveFormsModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
   ],
 })
 export class HomeComponent implements OnInit {
-  constructor(
-    private _fb: FormBuilder,
-    private _findAdressService: FindAddressService,
-    private _zipcodeMaskService: ZipcodeMaskService
-  ) {}
+  private _fb = inject(FormBuilder);
+  private _findAdressService = inject(FindAddressService);
+  private _zipcodeMaskService = inject(ZipcodeMaskService);
 
   public form!: FormGroup;
 

@@ -4,7 +4,7 @@ import { Component, inject } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { map, shareReplay } from 'rxjs/operators';
 
-import { FooterComponent } from '../home/layout/footer/footer.component';
+import { FooterComponent } from '../footer/footer.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -40,7 +40,7 @@ import { Observable } from 'rxjs';
     `,
   ],
   template: `
-  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav-container class="sidenav-container">
       <mat-sidenav
         #drawer
         class="sidenav"
@@ -51,8 +51,7 @@ import { Observable } from 'rxjs';
       >
         <mat-toolbar class="cursor-pointer"> Options </mat-toolbar>
         <mat-nav-list>
-          <a mat-list-item href="#">Next feature</a>
-          <a mat-list-item href="#">Next feature ...</a>
+          <a mat-list-item routerLink="address-list"> Address List</a>
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>
@@ -77,7 +76,7 @@ import { Observable } from 'rxjs';
         <app-footer />
       </mat-sidenav-content>
     </mat-sidenav-container>
-    `,
+  `,
   standalone: true,
   imports: [
     MatSidenavModule,

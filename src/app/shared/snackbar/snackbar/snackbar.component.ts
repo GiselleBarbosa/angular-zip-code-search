@@ -6,7 +6,8 @@ import { MatInputModule } from '@angular/material/input';
   selector: 'app-snackbar',
   standalone: true,
   imports: [MatFormFieldModule, MatInputModule],
-  template: ` <mat-form-field>
+  template: ` 
+  <mat-form-field>
       <mat-label>Message</mat-label>
       <input matInput value="Disco party!" #message />
     </mat-form-field>
