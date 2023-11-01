@@ -5,6 +5,7 @@
         <mat-form-field class="small-field">
           <mat-label>Zip Code</mat-label>
           <input
+            (keyup)="zipCodePatterMask($event)"
             formControlName="zipcode"
             matInput
             maxlength="9"
@@ -28,6 +29,7 @@
           [field]="'zipcode'"
           [maxLength]="9"
           [minLength]="9"
+          [pattern]="''"
         />
       </td>
     </tr>
