@@ -4,6 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-address-list',
   standalone: true,
   imports: [],
-  template: `<h1>Lista</h1>`,
+  template: `<h3>Saved addresses</h3>`,
 })
 export class AddressListComponent {}

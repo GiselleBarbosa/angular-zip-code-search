@@ -6,15 +6,16 @@ import { MatInputModule } from '@angular/material/input';
   selector: 'app-snackbar',
   standalone: true,
   imports: [MatFormFieldModule, MatInputModule],
-  template: ` 
-  <mat-form-field>
-      <mat-label>Message</mat-label>
-      <input matInput value="Disco party!" #message />
+  template: `
+    <mat-form-field>
+      <mat-label>Saved successfully</mat-label>
+      <input matInput value="Saved successfully!" #message />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Action</mat-label>
-      <input matInput value="Dance" #action />
-    </mat-form-field>`,
+      <mat-label>Close</mat-label>
+      <input matInput value="Close" #action />
+    </mat-form-field>
+  `,
 })
 export class SnackbarComponent {}
