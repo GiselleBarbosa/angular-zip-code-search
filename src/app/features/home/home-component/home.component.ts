@@ -163,7 +163,7 @@ export class HomeComponent implements OnInit {
           const dataForm = this.form.getRawValue();
         });
     } else {
-      this.openSnackBar('Invalid zip code', 5000);
+      this.openSnackBar('Invalid zip code', 2000);
     }
   }
 
