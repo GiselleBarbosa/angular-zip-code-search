@@ -5,12 +5,14 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { FeedbackFieldsComponent } from '../../../shared/feedback-fields/feedback-fields.component';
 import { FindAddressService } from '../services/find-address.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { SnackBarComponent } from 'src/app/shared/snack-bar-custom/snack-bar.component';
 import { ZipcodeMaskService } from '../services/zipcode-mask.service';
 import { regex } from '../../../shared/regex/regex';
 import { take } from 'rxjs';
@@ -42,12 +44,14 @@ import { take } from 'rxjs';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
+    MatSnackBarModule,
   ],
 })
 export class HomeComponent implements OnInit {
-  private _fb = inject(FormBuilder);
   private _findAdressService = inject(FindAddressService);
   private _zipcodeMaskService = inject(ZipcodeMaskService);
+  private _snackBar = inject(MatSnackBar);
+  private _fb = inject(FormBuilder);
 
   public form!: FormGroup;
 
@@ -157,11 +161,9 @@ export class HomeComponent implements OnInit {
             country: 'Brasil',
           });
           const dataForm = this.form.getRawValue();
-
-          // localStorage.setItem('saved_address', JSON.stringify(dataForm));
         });
     } else {
-      alert('Invalid zip code. Accepted format Ex. 01310-930');
+      this.openSnackBar('Invalid zip code', 5000);
     }
   }
 
@@ -170,11 +172,11 @@ export class HomeComponent implements OnInit {
     const dataForm = this.form.getRawValue();
 
     if (this.form.valid) {
-      console.log('Form sent successfully!');
+      this.openSnackBar('Form sent successfully!', 2000);
       this.resetForm();
     } else {
       localStorage.setItem('saved_address', JSON.stringify(dataForm));
-      console.log('Invalid fields');
+      this.openSnackBar('Invalid fields', 2000);
     }
   }
 
@@ -189,5 +191,12 @@ export class HomeComponent implements OnInit {
 
   public zipCodePatterMask(event: KeyboardEvent): void {
     this._zipcodeMaskService.zipCodePatterMask(event);
+  }
+
+  public openSnackBar(data: string, duration: number) {
+    this._snackBar.openFromComponent(SnackBarComponent, {
+      data: data,
+      duration: duration,
+    });
   }
 }

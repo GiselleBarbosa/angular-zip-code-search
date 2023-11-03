@@ -49,7 +49,7 @@ import { Observable } from 'rxjs';
         [mode]="(isHandset$ | async) ? 'over' : 'side'"
         [opened]="(isHandset$ | async) === false"
       >
-        <mat-toolbar class="cursor-pointer" routerLink="/"> Zipcode Search </mat-toolbar>
+        <mat-toolbar class="cursor-pointer" routerLink="/"> Zip Code Search </mat-toolbar>
         <mat-nav-list>
           <a mat-list-item routerLink="address-list"> Address List</a>
         </mat-nav-list>
