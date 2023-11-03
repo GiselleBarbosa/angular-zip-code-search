@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TemplateComponent } from './template/template.component';
+import { TemplateComponent } from './features/view/template/template.component';
 
 @Component({
   selector: 'app-root',

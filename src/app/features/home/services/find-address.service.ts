@@ -1,4 +1,4 @@
-import { Address } from '../interfaces/address.interface';
+import { Address } from '../../../shared/interfaces/address.interface';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
