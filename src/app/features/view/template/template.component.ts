@@ -49,8 +49,11 @@ import { Observable } from 'rxjs';
         [mode]="(isHandset$ | async) ? 'over' : 'side'"
         [opened]="(isHandset$ | async) === false"
       >
-        <mat-toolbar class="cursor-pointer" routerLink="/"> Zip Code Search </mat-toolbar>
+        <mat-toolbar class="cursor-pointer" routerLink="/">
+          Zip Code Search
+        </mat-toolbar>
         <mat-nav-list>
+          <a mat-list-item routerLink="home"> Search address </a>
           <a mat-list-item routerLink="address-list"> Address List</a>
         </mat-nav-list>
       </mat-sidenav>
@@ -66,7 +69,7 @@ import { Observable } from 'rxjs';
             <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
           </button>
         </mat-toolbar>
-        
+
         <div class="p-4">
           <router-outlet />
         </div>

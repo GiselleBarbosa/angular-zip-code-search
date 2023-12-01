@@ -1,21 +1,18 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { Subscription, take } from 'rxjs';
 
+import { AngularMaterialImportsModule } from 'src/app/shared/angular-material-imports/angular-material-imports/angular-material-imports.module';
 import { FeedbackFieldsComponent } from '../../../shared/feedback-fields/feedback-fields.component';
 import { FindAddressService } from '../services/find-address.service';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarComponent } from 'src/app/shared/snack-bar-custom/snack-bar.component';
-import { ZipcodeMaskService } from '../services/zipcode-mask.service';
 import { regex } from '../../../shared/regex/regex';
-import { take } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -41,17 +38,17 @@ import { take } from 'rxjs';
   imports: [
     FeedbackFieldsComponent,
     ReactiveFormsModule,
-    MatInputModule,
-    MatIconModule,
-    MatButtonModule,
-    MatSnackBarModule,
+    AngularMaterialImportsModule,
   ],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   private _findAdressService = inject(FindAddressService);
-  private _zipcodeMaskService = inject(ZipcodeMaskService);
   private _snackBar = inject(MatSnackBar);
   private _fb = inject(FormBuilder);
+
+  private zipcodeSubscription!: Subscription;
+
+  private zipcodeValue!: string;
 
   public form!: FormGroup;
 
@@ -67,6 +64,12 @@ export class HomeComponent implements OnInit {
     this.form.valueChanges.subscribe((modifiedFieldsData) => {
       localStorage.setItem('saved_address', JSON.stringify(modifiedFieldsData));
     });
+
+    this.zipcodeSubscription = this.form
+      .get('zipcode')!
+      .valueChanges.subscribe((zipcode: string) => {
+        this.zipcodeValue = zipcode;
+      });
   }
 
   public setDataForm(): void {
@@ -160,7 +163,6 @@ export class HomeComponent implements OnInit {
             uf: apiAddressData.uf,
             country: 'Brasil',
           });
-          const dataForm = this.form.getRawValue();
         });
     } else {
       this.openSnackBar('Invalid zip code', 2000);
@@ -189,8 +191,14 @@ export class HomeComponent implements OnInit {
     }, 2000);
   }
 
-  public zipCodePatterMask(event: KeyboardEvent): void {
-    this._zipcodeMaskService.zipCodePatterMask(event);
+  public zipCodePatterMask(): void {
+    const zipcodeLenght = this.form.get('zipcode')?.value.length;
+
+    if (zipcodeLenght === 5) {
+      this.form.patchValue({
+        zipcode: (this.zipcodeValue += '-'),
+      });
+    }
   }
 
   public openSnackBar(data: string, duration: number) {
@@ -198,5 +206,9 @@ export class HomeComponent implements OnInit {
       data: data,
       duration: duration,
     });
+  }
+
+  ngOnDestroy(): void {
+    this.zipcodeSubscription.unsubscribe();
   }
 }
