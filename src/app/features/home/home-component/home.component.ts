@@ -7,13 +7,13 @@ import {
 } from '@angular/forms';
 import { Subscription, take } from 'rxjs';
 
-import { AngularMaterialImportsModule } from 'src/app/shared/angular-material-imports/angular-material-imports/angular-material-imports.module';
+import { AngularMaterialImportsModule } from 'src/app/shared/angular-material-imports/angular-material-imports.module';
 import { FeedbackFieldsComponent } from '../../../shared/feedback-fields/feedback-fields.component';
 import { FindAddressService } from '../services/find-address.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarComponent } from 'src/app/shared/snack-bar-custom/snack-bar.component';
 import { TranslocoModule } from '@ngneat/transloco';
-import { regex } from '../../../shared/regex/regex';
+import { regex } from '../../../core/regex/regex';
 
 @Component({
   selector: 'app-home',

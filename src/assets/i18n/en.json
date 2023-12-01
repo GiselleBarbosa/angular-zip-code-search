@@ -26,6 +26,13 @@
       "complement": "Provide a reference",
       "reference": "Provide an address reference",
       "neighborhood": "Provide the neighborhood"
+    },
+
+    "invalid-feedback": {
+      "required": "Required field",
+      "max": "Maximum characters is ",
+      "min": "Minimum characters is ",
+      "invalid-pattern": "invalid character type for this field "
     }
   },
 

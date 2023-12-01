@@ -26,6 +26,13 @@
       "complement": "Informe um complemento",
       "reference": "Informe uma referência do endereço",
       "neighborhood": "Informe o bairro"
+    },
+
+    "invalid-feedback": {
+      "required": "Campo obrigatório",
+      "max": "Máximo de caracteres é ",
+      "min": "Minimo de caracteres é ",
+      "invalid-pattern": "Tipo de caractere invalido para este campo "
     }
   },
 
