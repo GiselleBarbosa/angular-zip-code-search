@@ -1,0 +1,22 @@
+{
+  "sidebar": {
+    "search-address": "Busca endereço",
+    "address-list": "Lista de endereços"
+  },
+
+  "home-page": {
+    "title": "Pesquisar endereço",
+
+    "form": {
+      "zipcode": "CEP",
+      "address": "Endereço",
+      "number": "Número",
+      "complement": "Completo",
+      "reference": "Referência",
+      "neighborhood": "Bairro",
+      "city": "Cidade",
+      "uf": "UF",
+      "country": "Pais"
+    }
+  }
+}

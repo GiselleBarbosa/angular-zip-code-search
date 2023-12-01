@@ -1,0 +1,22 @@
+{
+  "sidebar": {
+    "search-address": "Search address",
+    "address-list": "Address list"
+  },
+
+  "home-page": {
+    "title": "Search address",
+
+    "form": {
+      "zipcode": "Zipcode",
+      "address": "Address",
+      "number": "Nnumber",
+      "complement": "Complement",
+      "reference": "Referencea",
+      "neighborhood": "Neighborhood",
+      "city": "City",
+      "uf": "UF",
+      "country": "Country"
+    }
+  }
+}
