@@ -1,0 +1,48 @@
+{
+  "sidebar": {
+    "search-address": "Search address",
+    "address-list": "Address list"
+  },
+
+  "home-page": {
+    "title": "Search address",
+
+    "form": {
+      "zipcode": "Zipcode",
+      "address": "Address",
+      "number": "Nnumber",
+      "complement": "Complement",
+      "reference": "Reference",
+      "neighborhood": "Neighborhood",
+      "city": "City",
+      "uf": "UF",
+      "country": "Country"
+    },
+
+    "placeholder": {
+      "address": "Enter the address",
+      "number": "Ex. 123 or enter 0 for no number",
+      "country": "Ex. Brazil",
+      "complement": "Provide a reference",
+      "reference": "Provide an address reference",
+      "neighborhood": "Provide the neighborhood"
+    },
+
+    "invalid-feedback": {
+      "required": "Required field",
+      "max": "Maximum characters is ",
+      "min": "Minimum characters is ",
+      "invalid-pattern": "invalid character type for this field "
+    }
+  },
+
+  "buttons": {
+    "save-address": "Save address",
+    "clear-form": "Clear form"
+  },
+
+  "footer": {
+    "developed-with": "Developed with",
+    "by": "by Giselle Barbosa"
+  }
+}

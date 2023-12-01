@@ -1,0 +1,48 @@
+{
+  "sidebar": {
+    "search-address": "Busca endereço",
+    "address-list": "Lista de endereços"
+  },
+
+  "home-page": {
+    "title": "Pesquisar endereço",
+
+    "form": {
+      "zipcode": "CEP",
+      "address": "Endereço",
+      "number": "Número",
+      "complement": "Completo",
+      "reference": "Referência",
+      "neighborhood": "Bairro",
+      "city": "Cidade",
+      "uf": "UF",
+      "country": "Pais"
+    },
+
+    "placeholder": {
+      "address": "Digite o endereço",
+      "number": "Ex. 123 ou digite 0 para sem número",
+      "country": "Ex. Brasil",
+      "complement": "Informe um complemento",
+      "reference": "Informe uma referência do endereço",
+      "neighborhood": "Informe o bairro"
+    },
+
+    "invalid-feedback": {
+      "required": "Campo obrigatório",
+      "max": "Máximo de caracteres é ",
+      "min": "Minimo de caracteres é ",
+      "invalid-pattern": "Tipo de caractere invalido para este campo "
+    }
+  },
+
+  "buttons": {
+    "save-address": "Salvar endereço",
+    "clear-form": "Limpar formulario"
+  },
+
+  "footer": {
+    "developed-with": "Desenvolvido com",
+    "by": "por Giselle Barbosa"
+  }
+}

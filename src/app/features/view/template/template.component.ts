@@ -1,7 +1,10 @@
+import {} from '@ngneat/transloco';
+
 import { AsyncPipe, NgIf } from '@angular/common';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 import { map, shareReplay } from 'rxjs/operators';
 
 import { FooterComponent } from '../footer/footer.component';
@@ -14,69 +17,8 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-template',
-  styles: [
-    `
-      .sidenav-container {
-        height: 100%;
-      }
-
-      .sidenav {
-        width: 200px;
-      }
-
-      .sidenav .mat-toolbar {
-        background: inherit;
-      }
-
-      .mat-toolbar.mat-primary {
-        position: sticky;
-        top: 0;
-        z-index: 1;
-      }
-
-      .cursor-pointer {
-        cursor: pointer;
-      }
-    `,
-  ],
-  template: `
-    <mat-sidenav-container class="sidenav-container">
-      <mat-sidenav
-        #drawer
-        class="sidenav"
-        fixedInViewport
-        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-        [mode]="(isHandset$ | async) ? 'over' : 'side'"
-        [opened]="(isHandset$ | async) === false"
-      >
-        <mat-toolbar class="cursor-pointer" routerLink="/">
-          Zip Code Search
-        </mat-toolbar>
-        <mat-nav-list>
-          <a mat-list-item routerLink="home"> Search address </a>
-          <a mat-list-item routerLink="address-list"> Address List</a>
-        </mat-nav-list>
-      </mat-sidenav>
-      <mat-sidenav-content>
-        <mat-toolbar color="primary">
-          <button
-            type="button"
-            aria-label="Toggle sidenav"
-            mat-icon-button
-            (click)="drawer.toggle()"
-            *ngIf="isHandset$ | async"
-          >
-            <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-          </button>
-        </mat-toolbar>
-
-        <div class="p-4">
-          <router-outlet />
-        </div>
-      </mat-sidenav-content>
-    </mat-sidenav-container>
-    <app-footer />
-  `,
+  styleUrls: ['template.component.scss'],
+  templateUrl: 'template.component.html',
   standalone: true,
   imports: [
     MatSidenavModule,
@@ -89,15 +31,38 @@ import { Observable } from 'rxjs';
     RouterOutlet,
     AsyncPipe,
     FooterComponent,
+    TranslocoModule,
   ],
 })
-export class TemplateComponent {
+export class TemplateComponent implements OnInit {
   private breakpointObserver = inject(BreakpointObserver);
+  private translocoService = inject(TranslocoService);
 
-  isHandset$: Observable<boolean> = this.breakpointObserver
+  private selectedLanguage!: string;
+
+  public ngOnInit(): void {
+    const savedLanguageFromLocalstorage = localStorage.getItem('language');
+
+    if (savedLanguageFromLocalstorage) {
+      this.selectedLanguage = savedLanguageFromLocalstorage;
+      this.translocoService.setActiveLang(this.selectedLanguage);
+    }
+  }
+
+  public isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(
       map((result) => result.matches),
       shareReplay()
     );
+
+  public changeLanguage(): void {
+    if (this.translocoService.getActiveLang() === 'en') {
+      this.translocoService.setActiveLang('pt');
+    } else {
+      this.translocoService.setActiveLang('en');
+    }
+
+    localStorage.setItem('language', this.translocoService.getActiveLang());
+  }
 }

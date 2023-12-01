@@ -1,203 +1,217 @@
-<h3>Find your address</h3>
+<ng-container *transloco="let transloco">
+  <h3>{{ transloco("home-page.title") }}</h3>
 
-<form [formGroup]="form" (ngSubmit)="submitForm()">
-  <table class="full-width-field" cellspacing="0">
-    <tr>
-      <td>
-        <mat-form-field class="small-field">
-          <mat-label>Zip Code</mat-label>
-          <input
-            (keyup)="zipCodePatterMask()"
-            formControlName="zipcode"
-            matInput
-            maxlength="9"
-            minlength="9"
-            placeholder="Ex. 01310-930"
+  <form [formGroup]="form" (ngSubmit)="submitForm()">
+    <table class="full-width-field" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="small-field">
+            <mat-label> {{ transloco("home-page.form.zipcode") }}</mat-label>
+            <input
+              (keyup)="zipCodePatterMask()"
+              formControlName="zipcode"
+              matInput
+              maxlength="9"
+              minlength="9"
+              placeholder="Ex. 01310-930"
+            />
+          </mat-form-field>
+
+          <button
+            type="button"
+            (click)="PopulateFields()"
+            class="ms-4"
+            mat-fab
+            aria-label="icon button with a search icon"
+          >
+            <mat-icon>search</mat-icon>
+          </button>
+
+          <app-feedback-fields
+            [form]="form"
+            [field]="'zipcode'"
+            [maxLength]="9"
+            [minLength]="9"
+            [pattern]="''"
           />
-        </mat-form-field>
+        </td>
+      </tr>
 
-        <button
-          type="button"
-          (click)="PopulateFields()"
-          class="ms-4"
-          mat-fab
-          aria-label="icon button with a search icon"
-        >
-          <mat-icon>search</mat-icon>
-        </button>
-
-        <app-feedback-fields
-          [form]="form"
-          [field]="'zipcode'"
-          [maxLength]="9"
-          [minLength]="9"
-          [pattern]="''"
-        />
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        <mat-form-field class="full-width-field">
-          <mat-label>Address</mat-label>
-          <input
-            formControlName="address"
-            matInput
-            placeholder="Ex. Av. Paulista"
+      <tr>
+        <td>
+          <mat-form-field class="full-width-field">
+            <mat-label>{{ transloco("home-page.form.address") }}</mat-label>
+            <input
+              formControlName="address"
+              matInput
+              placeholder="{{ transloco('home-page.placeholder.address') }}"
+            />
+          </mat-form-field>
+          <app-feedback-fields
+            [form]="form"
+            [field]="'address'"
+            [maxLength]="50"
+            [minLength]="3"
           />
-        </mat-form-field>
-        <app-feedback-fields
-          [form]="form"
-          [field]="'address'"
-          [maxLength]="50"
-          [minLength]="3"
-        />
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <mat-form-field class="full-width-field">
-          <mat-label>Number</mat-label>
-          <input
-            formControlName="number"
-            matInput
-            placeholder="Ex. 123 ou digite 0 para sem numero"
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <mat-form-field class="full-width-field">
+            <mat-label>{{ transloco("home-page.form.number") }}</mat-label>
+            <input
+              formControlName="number"
+              matInput
+              placeholder="{{ transloco('home-page.placeholder.number') }}"
+            />
+          </mat-form-field>
+          <app-feedback-fields
+            [form]="form"
+            [field]="'number'"
+            [maxLength]="10"
+            [minLength]="1"
           />
-        </mat-form-field>
-        <app-feedback-fields
-          [form]="form"
-          [field]="'number'"
-          [maxLength]="10"
-          [minLength]="1"
-        />
-      </td>
-    </tr>
+        </td>
+      </tr>
 
-    <tr>
-      <td>
-        <mat-form-field class="full-width-field">
-          <mat-label>Complement</mat-label>
-          <input
-            matInput
-            formControlName="complement"
-            #complement
-            maxlength="35"
-            placeholder="Ex. apto 23 bloco A"
+      <tr>
+        <td>
+          <mat-form-field class="full-width-field">
+            <mat-label>{{ transloco("home-page.form.complement") }}</mat-label>
+            <input
+              matInput
+              formControlName="complement"
+              #complement
+              maxlength="35"
+              placeholder="{{ transloco('home-page.placeholder.complement') }}"
+            />
+          </mat-form-field>
+          <app-feedback-fields
+            [form]="form"
+            [field]="'complement'"
+            [maxLength]="35"
+            [minLength]="1"
           />
-        </mat-form-field>
-        <app-feedback-fields
-          [form]="form"
-          [field]="'complement'"
-          [maxLength]="35"
-          [minLength]="1"
-        />
-      </td>
-    </tr>
+        </td>
+      </tr>
 
-    <tr>
-      <td>
-        <mat-form-field class="full-width-field">
-          <mat-label>Reference</mat-label>
-          <input
-            matInput
-            formControlName="reference"
-            #reference
-            maxlength="50"
-            placeholder="Ex. next train station"
+      <tr>
+        <td>
+          <mat-form-field class="full-width-field">
+            <mat-label>{{ transloco("home-page.form.reference") }}</mat-label>
+            <input
+              matInput
+              formControlName="reference"
+              #reference
+              maxlength="50"
+              placeholder="{{ transloco('home-page.placeholder.reference') }}"
+            />
+          </mat-form-field>
+          <app-feedback-fields
+            [form]="form"
+            [field]="'reference'"
+            [maxLength]="50"
+            [minLength]="1"
           />
-        </mat-form-field>
-        <app-feedback-fields
-          [form]="form"
-          [field]="'reference'"
-          [maxLength]="50"
-          [minLength]="1"
-        />
-      </td>
-    </tr>
+        </td>
+      </tr>
 
-    <tr>
-      <td>
-        <mat-form-field class="full-width-field">
-          <mat-label>Neighborhood</mat-label>
-          <input
-            matInput
-            formControlName="neighborhood"
-            #reference
-            placeholder="Ex. Bela Vista"
+      <tr>
+        <td>
+          <mat-form-field class="full-width-field">
+            <mat-label>{{
+              transloco("home-page.form.neighborhood")
+            }}</mat-label>
+            <input
+              matInput
+              formControlName="neighborhood"
+              #reference
+              placeholder="{{
+                transloco('home-page.placeholder.neighborhood')
+              }}"
+            />
+          </mat-form-field>
+          <app-feedback-fields
+            [form]="form"
+            [field]="'neighborhood'"
+            [maxLength]="40"
+            [minLength]="3"
           />
-        </mat-form-field>
-        <app-feedback-fields
-          [form]="form"
-          [field]="'neighborhood'"
-          [maxLength]="40"
-          [minLength]="3"
-        />
-      </td>
-    </tr>
-  </table>
+        </td>
+      </tr>
+    </table>
 
-  <table class="full-width-field" cellspacing="0">
-    <tr>
-      <td>
-        <mat-form-field class="full-width-field">
-          <mat-label>City</mat-label>
-          <input formControlName="city" matInput placeholder="Ex. São Paulo" />
-        </mat-form-field>
-        <app-feedback-fields
-          [form]="form"
-          [field]="'city'"
-          [maxLength]="40"
-          [minLength]="3"
-        />
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <mat-form-field class="full-width-field">
-          <mat-label>UF</mat-label>
-          <input formControlName="uf" matInput placeholder="Ex. SP" />
-        </mat-form-field>
-        <app-feedback-fields
-          [form]="form"
-          [field]="'uf'"
-          [maxLength]="2"
-          [minLength]="2"
-        />
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <mat-form-field class="full-width-field">
-          <mat-label>Country</mat-label>
-          <input formControlName="country" matInput placeholder="Ex. Brazil" />
-        </mat-form-field>
-        <app-feedback-fields
-          [form]="form"
-          [field]="'country'"
-          [maxLength]="40"
-          [minLength]="3"
-        />
-      </td>
-    </tr>
-  </table>
-  <button
-    type="submit"
-    mat-raised-button
-    color="primary"
-    class="w-100 mt-1 mb-3"
-    style="height: 3rem"
-  >
-    Save address
-  </button>
+    <table class="full-width-field" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="full-width-field">
+            <mat-label>{{ transloco("home-page.form.city") }}</mat-label>
+            <input
+              formControlName="city"
+              matInput
+              placeholder="Ex. São Paulo"
+            />
+          </mat-form-field>
+          <app-feedback-fields
+            [form]="form"
+            [field]="'city'"
+            [maxLength]="40"
+            [minLength]="3"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <mat-form-field class="full-width-field">
+            <mat-label>{{ transloco("home-page.form.uf") }}</mat-label>
+            <input formControlName="uf" matInput placeholder="Ex. SP" />
+          </mat-form-field>
+          <app-feedback-fields
+            [form]="form"
+            [field]="'uf'"
+            [maxLength]="2"
+            [minLength]="2"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <mat-form-field class="full-width-field">
+            <mat-label>{{ transloco("home-page.form.country") }}</mat-label>
+            <input
+              formControlName="country"
+              matInput
+              placeholder="{{ transloco('home-page.placeholder.country') }}"
+            />
+          </mat-form-field>
+          <app-feedback-fields
+            [form]="form"
+            [field]="'country'"
+            [maxLength]="40"
+            [minLength]="3"
+          />
+        </td>
+      </tr>
+    </table>
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      class="w-100 mt-1 mb-3"
+      style="height: 3rem"
+    >
+      {{ transloco("buttons.save-address") }}
+    </button>
 
-  <button
-    type="button"
-    mat-raised-button
-    color="accent"
-    class="w-100 mt-1"
-    style="height: 3rem"
-    (click)="resetForm()"
-  >
-    Clear form
-  </button>
-</form>
+    <button
+      type="button"
+      mat-raised-button
+      color="accent"
+      class="w-100 mt-1"
+      style="height: 3rem"
+      (click)="resetForm()"
+    >
+      {{ transloco("buttons.clear-form") }}
+    </button>
+  </form>
+</ng-container>

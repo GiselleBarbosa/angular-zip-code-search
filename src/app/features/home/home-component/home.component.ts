@@ -7,38 +7,24 @@ import {
 } from '@angular/forms';
 import { Subscription, take } from 'rxjs';
 
-import { AngularMaterialImportsModule } from 'src/app/shared/angular-material-imports/angular-material-imports/angular-material-imports.module';
+import { AngularMaterialImportsModule } from 'src/app/shared/angular-material-imports/angular-material-imports.module';
 import { FeedbackFieldsComponent } from '../../../shared/feedback-fields/feedback-fields.component';
 import { FindAddressService } from '../services/find-address.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarComponent } from 'src/app/shared/snack-bar-custom/snack-bar.component';
-import { regex } from '../../../shared/regex/regex';
+import { TranslocoModule } from '@ngneat/transloco';
+import { regex } from '../../../core/regex/regex';
 
 @Component({
   selector: 'app-home',
-  styles: [
-    `
-      .form {
-        min-width: 150px;
-        max-width: 400px;
-        width: 100%;
-      }
-
-      .full-width-field {
-        width: 100%;
-      }
-
-      .small-field {
-        width: 50%;
-      }
-    `,
-  ],
+  styleUrls: ['home.component.scss'],
   templateUrl: 'home.component.html',
   standalone: true,
   imports: [
     FeedbackFieldsComponent,
     ReactiveFormsModule,
     AngularMaterialImportsModule,
+    TranslocoModule,
   ],
 })
 export class HomeComponent implements OnInit, OnDestroy {
