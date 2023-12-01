@@ -2,7 +2,7 @@ import {} from '@ngneat/transloco';
 
 import { AsyncPipe, NgIf } from '@angular/common';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 import { map, shareReplay } from 'rxjs/operators';
@@ -34,10 +34,20 @@ import { Observable } from 'rxjs';
     TranslocoModule,
   ],
 })
-export class TemplateComponent {
+export class TemplateComponent implements OnInit {
   private breakpointObserver = inject(BreakpointObserver);
-
   private translocoService = inject(TranslocoService);
+
+  private selectedLanguage!: string;
+
+  public ngOnInit(): void {
+    const savedLanguageFromLocalstorage = localStorage.getItem('language');
+
+    if (savedLanguageFromLocalstorage) {
+      this.selectedLanguage = savedLanguageFromLocalstorage;
+      this.translocoService.setActiveLang(this.selectedLanguage);
+    }
+  }
 
   public isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
@@ -47,11 +57,12 @@ export class TemplateComponent {
     );
 
   public changeLanguage(): void {
-    const currentLanguage = this.translocoService.getActiveLang();
-    if (currentLanguage === 'pt') {
-      this.translocoService.setActiveLang('en');
-    } else if (currentLanguage === 'en') {
+    if (this.translocoService.getActiveLang() === 'en') {
       this.translocoService.setActiveLang('pt');
+    } else {
+      this.translocoService.setActiveLang('en');
     }
+
+    localStorage.setItem('language', this.translocoService.getActiveLang());
   }
 }
