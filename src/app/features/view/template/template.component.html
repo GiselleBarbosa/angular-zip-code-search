@@ -15,20 +15,36 @@
         <a mat-list-item routerLink="home">
           {{ transloco("sidebar.search-address") }}
         </a>
-        <a mat-list-item routerLink="address-list">   {{ transloco("sidebar.address-list") }}  </a>
+        <a mat-list-item routerLink="address-list">
+          {{ transloco("sidebar.address-list") }}
+        </a>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-      <mat-toolbar color="primary">
-        <button
-          type="button"
-          aria-label="Toggle sidenav"
-          mat-icon-button
-          (click)="drawer.toggle()"
-          *ngIf="isHandset$ | async"
-        >
-          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-        </button>
+      <mat-toolbar
+        class="d-flex justify-content-between align-content-center"
+        color="secondary"
+      >
+        <div>
+          <button
+            type="button"
+            aria-label="Toggle sidenav"
+            mat-icon-button
+            (click)="drawer.toggle()"
+            *ngIf="isHandset$ | async"
+          >
+            <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+          </button>
+
+          <button
+            type="button"
+            aria-label="Toggle sidenav"
+            mat-icon-button
+            (click)="changeLanguage()"
+          >
+            <mat-icon aria-label="Side nav toggle icon">translate</mat-icon>
+          </button>
+        </div>
       </mat-toolbar>
 
       <div class="p-4">
