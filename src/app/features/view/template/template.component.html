@@ -21,29 +21,29 @@
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-      <mat-toolbar
-        class="d-flex justify-content-between align-content-center"
-        color="secondary"
-      >
-        <div>
-          <button
-            type="button"
-            aria-label="Toggle sidenav"
-            mat-icon-button
-            (click)="drawer.toggle()"
-            *ngIf="isHandset$ | async"
-          >
-            <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-          </button>
-
-          <button
-            type="button"
-            aria-label="Toggle sidenav"
-            mat-icon-button
-            (click)="changeLanguage()"
-          >
-            <mat-icon aria-label="Side nav toggle icon">translate</mat-icon>
-          </button>
+      <mat-toolbar color="primary">
+        <div class="d-flex justify-content-between w-100">
+          <div>
+            <button
+              type="button"
+              aria-label="Toggle sidenav"
+              mat-icon-button
+              (click)="drawer.toggle()"
+              *ngIf="isHandset$ | async"
+            >
+              <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            </button>
+          </div>
+          <div>
+            <button
+              type="button"
+              aria-label="Toggle sidenav"
+              mat-icon-button
+              (click)="changeLanguage()"
+            >
+              <mat-icon aria-label="Side nav toggle icon">translate</mat-icon>
+            </button>
+          </div>
         </div>
       </mat-toolbar>
 
