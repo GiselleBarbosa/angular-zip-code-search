@@ -17,6 +17,25 @@
       "city": "Cidade",
       "uf": "UF",
       "country": "Pais"
+    },
+
+    "placeholder": {
+      "address": "Digite o endereço",
+      "number": "Ex. 123 ou digite 0 para sem número",
+      "country": "Ex. Brasil",
+      "complement": "Informe um complemento",
+      "reference": "Informe uma referência do endereço",
+      "neighborhood": "Informe o bairro"
     }
+  },
+
+  "buttons": {
+    "save-address": "Salvar endereço",
+    "clear-form": "Limpar formulario"
+  },
+
+  "footer": {
+    "developed-with": "Desenvolvido com",
+    "by": "por Giselle Barbosa"
   }
 }

@@ -6,7 +6,7 @@
       <tr>
         <td>
           <mat-form-field class="small-field">
-            <mat-label>Zip Code</mat-label>
+            <mat-label> {{ transloco("home-page.form.zipcode") }}</mat-label>
             <input
               (keyup)="zipCodePatterMask()"
               formControlName="zipcode"
@@ -40,11 +40,11 @@
       <tr>
         <td>
           <mat-form-field class="full-width-field">
-            <mat-label>Address</mat-label>
+            <mat-label>{{ transloco("home-page.form.address") }}</mat-label>
             <input
               formControlName="address"
               matInput
-              placeholder="Ex. Av. Paulista"
+              placeholder="{{ transloco('home-page.placeholder.address') }}"
             />
           </mat-form-field>
           <app-feedback-fields
@@ -58,11 +58,11 @@
       <tr>
         <td>
           <mat-form-field class="full-width-field">
-            <mat-label>Number</mat-label>
+            <mat-label>{{ transloco("home-page.form.number") }}</mat-label>
             <input
               formControlName="number"
               matInput
-              placeholder="Ex. 123 ou digite 0 para sem numero"
+              placeholder="{{ transloco('home-page.placeholder.number') }}"
             />
           </mat-form-field>
           <app-feedback-fields
@@ -77,13 +77,13 @@
       <tr>
         <td>
           <mat-form-field class="full-width-field">
-            <mat-label>Complement</mat-label>
+            <mat-label>{{ transloco("home-page.form.complement") }}</mat-label>
             <input
               matInput
               formControlName="complement"
               #complement
               maxlength="35"
-              placeholder="Ex. apto 23 bloco A"
+              placeholder="{{ transloco('home-page.placeholder.complement') }}"
             />
           </mat-form-field>
           <app-feedback-fields
@@ -98,13 +98,13 @@
       <tr>
         <td>
           <mat-form-field class="full-width-field">
-            <mat-label>Reference</mat-label>
+            <mat-label>{{ transloco("home-page.form.reference") }}</mat-label>
             <input
               matInput
               formControlName="reference"
               #reference
               maxlength="50"
-              placeholder="Ex. next train station"
+              placeholder="{{ transloco('home-page.placeholder.reference') }}"
             />
           </mat-form-field>
           <app-feedback-fields
@@ -119,12 +119,16 @@
       <tr>
         <td>
           <mat-form-field class="full-width-field">
-            <mat-label>Neighborhood</mat-label>
+            <mat-label>{{
+              transloco("home-page.form.neighborhood")
+            }}</mat-label>
             <input
               matInput
               formControlName="neighborhood"
               #reference
-              placeholder="Ex. Bela Vista"
+              placeholder="{{
+                transloco('home-page.placeholder.neighborhood')
+              }}"
             />
           </mat-form-field>
           <app-feedback-fields
@@ -141,7 +145,7 @@
       <tr>
         <td>
           <mat-form-field class="full-width-field">
-            <mat-label>City</mat-label>
+            <mat-label>{{ transloco("home-page.form.city") }}</mat-label>
             <input
               formControlName="city"
               matInput
@@ -159,7 +163,7 @@
       <tr>
         <td>
           <mat-form-field class="full-width-field">
-            <mat-label>UF</mat-label>
+            <mat-label>{{ transloco("home-page.form.uf") }}</mat-label>
             <input formControlName="uf" matInput placeholder="Ex. SP" />
           </mat-form-field>
           <app-feedback-fields
@@ -173,11 +177,11 @@
       <tr>
         <td>
           <mat-form-field class="full-width-field">
-            <mat-label>Country</mat-label>
+            <mat-label>{{ transloco("home-page.form.country") }}</mat-label>
             <input
               formControlName="country"
               matInput
-              placeholder="Ex. Brazil"
+              placeholder="{{ transloco('home-page.placeholder.country') }}"
             />
           </mat-form-field>
           <app-feedback-fields
@@ -196,7 +200,7 @@
       class="w-100 mt-1 mb-3"
       style="height: 3rem"
     >
-      Save address
+      {{ transloco("buttons.save-address") }}
     </button>
 
     <button
@@ -207,7 +211,7 @@
       style="height: 3rem"
       (click)="resetForm()"
     >
-      Clear form
+      {{ transloco("buttons.clear-form") }}
     </button>
   </form>
 </ng-container>
