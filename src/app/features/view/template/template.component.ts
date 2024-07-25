@@ -1,5 +1,3 @@
-import {} from '@ngneat/transloco';
-
 import { AsyncPipe, NgIf } from '@angular/common';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnInit, inject } from '@angular/core';
