@@ -1,4 +1,4 @@
-import { AddressListComponent } from './features/address-list/address-list.component';
+import { SavedAddressesComponent } from './features/address-list/saved-addresses.component';
 import { HomeComponent } from './features/home/home-component/home.component';
 import { Routes } from '@angular/router';
 
@@ -12,6 +12,6 @@ export const homeRoute: Routes = [
 export const addressListRoutes: Routes = [
   {
     path: '',
-    component: AddressListComponent,
+    component: SavedAddressesComponent,
   },
 ];

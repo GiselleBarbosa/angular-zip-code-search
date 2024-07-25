@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddressListComponent } from './address-list.component';
+import { SavedAddressesComponent } from './saved-addresses.component';
 
 describe('AddressListComponent', () => {
-  let component: AddressListComponent;
-  let fixture: ComponentFixture<AddressListComponent>;
+  let component: SavedAddressesComponent;
+  let fixture: ComponentFixture<SavedAddressesComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AddressListComponent]
+      imports: [SavedAddressesComponent],
     });
-    fixture = TestBed.createComponent(AddressListComponent);
+    fixture = TestBed.createComponent(SavedAddressesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
