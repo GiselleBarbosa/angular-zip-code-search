@@ -1,0 +1,32 @@
+<ng-container *transloco="let transloco">
+  <h3>Lista de Endereços</h3>
+
+  <div *ngIf="savedAddress; else noAddresses">
+    <mat-card class="address-card">
+      <mat-card-content>
+        <p><strong>{{ transloco('home-page.form.zipcode') }}:</strong> {{ savedAddress.zipcode }}</p>
+        <p><strong>{{ transloco('home-page.form.address') }}:</strong> {{ savedAddress.address }}</p>
+        <p><strong>{{ transloco('home-page.form.number') }}:</strong> {{ savedAddress.number }}</p>
+        <p><strong>{{ transloco('home-page.form.complement') }}:</strong> {{ savedAddress.complement }}</p>
+        <p><strong>{{ transloco('home-page.form.reference') }}:</strong> {{ savedAddress.reference }}</p>
+        <p><strong>{{ transloco('home-page.form.neighborhood') }}:</strong> {{ savedAddress.neighborhood }}</p>
+        <p><strong>{{ transloco('home-page.form.city') }}:</strong> {{ savedAddress.city }}</p>
+        <p><strong>{{ transloco('home-page.form.uf') }}:</strong> {{ savedAddress.uf }}</p>
+        <p><strong>{{ transloco('home-page.form.country') }}:</strong> {{ savedAddress.country }}</p>
+      </mat-card-content>
+    </mat-card>
+
+    <button
+      mat-raised-button
+      color="warn"
+      class="clear-button"
+      (click)="clearSavedAddresses()"
+    >
+      Remover endereços salvos
+    </button>
+  </div>
+
+  <ng-template #noAddresses>
+    <p>Sem endereços salvos</p>
+  </ng-template>
+</ng-container>

@@ -9,33 +9,8 @@ import { MatIconModule } from '@angular/material/icon';
   selector: 'app-snack-bar',
   standalone: true,
   imports: [MatButtonModule, MatSnackBarModule, MatIconModule],
-  styles: [
-    `
-      :host {
-        display: flex;
-      }
-
-      .action {
-        color: hotpink;
-      }
-    `,
-  ],
-  template: `
-    <span matSnackBarLabel>
-      {{ data }}
-    </span>
-    <span matSnackBarActions>
-      <button
-        mat-button
-        matSnackBarAction
-        (click)="snackBarRef.dismissWithAction()"
-      >
-        <span matSnackBarLabel
-          ><mat-icon class="action" fontIcon="close"></mat-icon
-        ></span>
-      </button>
-    </span>
-  `,
+  templateUrl: "./snack-bar.component.html",
+  styleUrls: ["./snack-bar.component.scss"]
 })
 export class SnackBarComponent {
   constructor(@Inject(MAT_SNACK_BAR_DATA) public data: string) {}
